@@ -5,7 +5,6 @@ import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 
 @Controller('contact')
 export class ContactController {
-    // Constructor
     constructor(private readonly contactService: ContactService) { }
 
     @Post('create_contact')
@@ -14,9 +13,11 @@ export class ContactController {
     @ApiResponse({
         status: 200,
         description: 'Contato criado com sucesso',
-        // schema: {
-        //     example: { confirmation: `` }
-        // }
+        schema: {
+            example: {
+                confirmation: 'Thank you João Silva, for getting in touch! We will get back to you shortly.',
+            }
+        }
     })
     async create(@Body() createContactDto: CreateContactDto) {
         return this.contactService.createContact(createContactDto);
